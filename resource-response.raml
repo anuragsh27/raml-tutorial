@@ -1,0 +1,76 @@
+#%RAML 1.0 ResourceType
+
+get?:
+  displayName: <<resourcePathName|!singularize|!uppercamelcase>>
+  description: Get a collection of a <<resourcePathName>>.
+  responses:
+    200:
+      body:
+        application/json:
+          description: A collection of <<resourcePathName>>. If no <<resourcePathName|!singularize |!uppercamelcase>> was found, a empty list is returned.
+          type: <<type-get-response>> 
+          examples: <<examples-get-response>>
+           
+delete?:
+  displayName: <<resourcePathName|!singularize>>
+  description: Delete an <<resourcePathName|!singularize>> based on information provided.
+  body: 
+    application/json:
+      description: <<resourcePathName|!singularize>> to be deleted.
+      type: <<type-delete-request>>
+      examples: <<examples-delete-request>>
+  responses: 
+    200:
+      body: 
+        application/json:
+          description: Returns the <<resourcePathName|!singularize>> deleted.
+          type: <<type-delete-response>>
+          examples: <<examples-delete-response>>
+
+patch?:
+  displayName: <<resourcePathName|!singularize>>
+  description: Update an <<resourcePathName|!singularize>> based on information provided.
+  body: 
+    application/json:
+      description: The order <<resourcePathName|!singularize>> to be updated.
+      type: <<type-patch-request>>
+      examples: <<examples-patch-request>>
+  responses: 
+    200:
+      body: 
+        application/json:
+          description: Returns the <<resourcePathName|!singularize>> updated.
+          type: <<type-patch-response>>
+          examples: <<examples-patch-response>>
+          
+put?:
+  displayName: update <<resourcePathName|!singularize>>
+  description: Update an <<resourcePathName|!singularize>> based on information provided.
+  body: 
+    application/json:
+      description:  <<resourcePathName|!singularize>> to be updated.
+      type: <<type-put-request>>
+      examples: <<examples-put-request>>
+  responses: 
+    200:
+      body: 
+        application/json:
+          description: Returns the <<resourcePathName|!singularize>> updated.
+          type: <<type-put-response>>
+          examples: <<examples-put-response>>
+
+post?:
+  displayName: <<resourcePathName|!singularize>>
+  description: create an <<resourcePathName|!singularize>> based on information provided.
+  body: 
+    application/json:
+      description: <<resourcePathName|!singularize>> to be created.
+      type: <<type-post-request>>
+      examples: <<examples-post-request>>
+  responses: 
+    201:
+      body: 
+        application/json:
+          description: Returns the <<resourcePathName|!singularize>> created.
+          type: <<type-post-response>>
+          examples: <<examples-post-response>>

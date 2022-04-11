@@ -1,0 +1,158 @@
+#%RAML 1.0
+title: MuleSoft Station System API
+version: v1
+baseUri: https://muleSoftstaion.com/v1/*
+protocols: [HTTPS]
+mediaType: appliation/json
+
+documentation:
+  - title: Endpoints
+    content: !include docs/endpoints.markdown
+
+
+uses:
+  lb-api: local-library/library.raml
+
+resourceTypes:
+  item-resource: !include resource-response.raml
+
+traits:
+  uuid-required:
+    headers:
+      uuid:
+        description: A unique identifier of the request
+        type: string
+        example: "abc123"
+        required: true 
+  secret-required:
+    haders:
+      client_id:
+        description: A unique identifier of the request
+        type: string
+        example: "abc123"
+        required: true 
+      client_secret:
+        description: A unique identifier of the request
+        type: string
+        example: "abc123"
+        required: true 
+  
+  error-response: !include error-message-definition.raml
+
+
+securitySchemes:
+  basicAuth:
+    description: username and password in headers
+    type: Basic Authentication   #its Mandatory
+    describedBy:
+      headers:
+        Authorization:
+          type: string
+      responses:
+        401:
+          description: Unauthorized entred wrong Credentials
+
+  oauth_2:
+   description: The Oauth 2.0 authoriztion framework is a protocol that allows a user to grant a hird party website or application access to the users's protected resources, without neccessarily revealing tgeir credentials
+   type: OAuth 2.0
+   describedBy:
+     headers:
+       Authorization:
+         description: senda Valid OAuth 2 access Token
+     responses:
+        404:
+           description: Unauthorized
+
+/employees:
+  is: [uuid-required]
+  securedBy:
+    - basicAuth
+  get:
+    description: List all Employees matching the condition, if provided
+    queryParameters:
+      name: string
+      code: string
+    responses:
+      200:
+        body:
+          application/json:
+            example: [
+                 { "id" : 341, "name" : "Judy", "designation" : "Sr. developer" },
+                 {"id" : 541, "name" : "Ramesh", "designation" : "developer" }
+            ]
+  /{id}:
+    uriParameters:
+      id:
+        type: string
+    get:
+       description: get an employee by Id   
+       responses:
+         200:
+           body:
+             application/json:
+                example: { "id" : 341, "name" : "Judy", "designation" : "Sr. developer" }
+    delete:
+       description: Delete a Employee by id
+       responses:
+         200:
+           body:
+             application/json:
+               example: { "message" : "Employee record deleted"}
+         404:
+           body:
+             application/json:
+              example: {
+                      "message": "Id Not Found"
+                    }
+
+##########################
+# Developer: @anurag Sharma
+# Date: 07-04-2022
+###########################
+/contacts:
+  is: [error-response]
+  get:
+    description: Get Contact by Email Address.
+    queryParameters:
+      email:
+        description: Email address to identify record in CRM.
+        type: string
+        example: mulesoftstation @gmail.com
+        required: true
+  post:
+    description: Create Contact in DB
+  type:
+    item-resource:
+      type-get-response: lb-api.getContactResponse
+      examples-get-response:
+        example: !include examples/response/get-contacts-response.json
+      type-post-request: lb-api.postContactRequest
+      examples-post-request:
+        examples: !include examples/request/post-contacts-request.json 
+      type-post-response: lb-api.postContactResponse
+      examples-post-response:
+        examples: !include examples/response/post-contacts-response.json
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+#%RAML 1.0 Trait
+
+uses:
+  error-response: local-library/error-structure.raml
+
+
+responses:
+  400:
+    body:
+      application/json:
+        type: error-response.error-collection
+        examples:
+          example: !include examples/error/client-error/error-response-400.json
