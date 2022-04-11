@@ -1,0 +1,33 @@
+#%RAML 1.0 DataType
+description: get contact response data type
+
+type: object
+properties:
+  customertypecode:
+    type: number
+  emailaddress1:
+    type: string
+  emailaddress2:
+    type: string | nil
+  firstname:
+    type: string
+  fullname:
+    type: string
+  lastname:
+    type: string
+  donotpostalmail:
+    type: boolean
+  marketingonly:
+    type: boolean
+  donotphone:
+    type: boolean
+  donotemail:
+    type: boolean
+  donotfax:
+    type: boolean
+  followemail:
+    type: boolean
+  address:
+    type: string | nil
+  emailpreferred:
+    type: boolean

@@ -1,0 +1,14 @@
+{
+  "success": false,
+  "apiName": null,
+  "version": null,
+  "correlationId": "8aa2cb70-d7d6-11eb-b4d1-02018dd03ba2",
+  "timestamp": "2021-06-28T02:09:22.436-04:00",
+  "errorDetails": [
+    {
+      "code": 400,
+      "reason": "HTTP:BAD_REQUEST",
+      "message": "Required header id not specified failed: Bad request."
+    }
+  ]
+}

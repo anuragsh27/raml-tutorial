@@ -1,0 +1,16 @@
+{
+    "customertypecode": 1,
+    "emailaddress1": "mulesoftstation@gmail.com",
+	 "emailaddress2": null,
+	 "firstname": "MuleSoft",
+    "fullname": "MuleSoft Station",
+    "lastname": "station",
+    "donotpostalmail": false,
+    "marketingonly": false,
+    "donotphone": false,
+    "donotemail": false,
+    "donotfax": false,
+    "followemail": true,
+   "address": null,
+   "emailpreferred": false
+}
